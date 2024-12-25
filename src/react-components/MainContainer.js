@@ -1,16 +1,14 @@
-import React from 'react'
-import LeftNavigation from './LeftNavigation'
-import Body from './Body'
+import React from "react";
+import LeftNavigation from "./LeftNavigation";
+import Body from "./Body";
 
 const MainContainer = () => {
   return (
-    <>
-    <LeftNavigation/>
-    <Body/>
-    </>
-    
-    
-  )
-}
+    <div id="MainContainer" className="flex overflow-hidden">
+      <LeftNavigation />
+      <Body />
+    </div>
+  );
+};
 
-export default MainContainer
+export default MainContainer;
