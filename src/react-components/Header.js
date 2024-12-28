@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { searchSuggestionsAPIEndPoint } from "../constants/yt-apis";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -30,6 +31,7 @@ function Header() {
         alt="Navbar Icon"
         className="size-10"
       />
+
       <img
         src="/assets/Youtube_icon.png"
         alt="Youtube_icon"
@@ -45,15 +47,25 @@ function Header() {
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             onFocus={() => setShowSuggestionBox(true)}
-            onBlur={() => setShowSuggestionBox(false)}
+            //onBlur={() => setShowSuggestionBox(false)}
             placeholder="Search..."
           />
           {/* Dropdown */}
 
           {showSuggestionBox && searchSuggestions.length > 0 && (
-            <div className="absolute top-full left-0 w-full bg-white border mt-1 shadow-lg z-10 flex flex-col rounded-xl">
+            <div
+              onBlur={() => setShowSuggestionBox(false)}
+              className="absolute top-full left-0 w-full bg-white border mt-1 shadow-lg z-10 flex flex-col rounded-xl"
+            >
               {searchSuggestions.map((item, index) => (
-                <button className="text-left ml-1 mt-1 pl-5" key={index}>
+                <button
+                  className="text-left ml-1 mt-1 pl-5"
+                  key={index}
+                  onClick={() => {
+                    setSearchText(item);
+                    setShowSuggestionBox(false);
+                  }}
+                >
                   {item}
                 </button>
               ))}
