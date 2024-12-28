@@ -27,6 +27,7 @@ const LeftNavigation = () => {
         <li className="h-8 flex items-end">
           {" "}
           <img
+            alt="shorts icon"
             src={nav_icons_urls.shorts_icon_url}
             className="w-5 h-5 mt-3 ml-2"
           />{" "}
@@ -35,6 +36,7 @@ const LeftNavigation = () => {
         <li className="h-8 flex items-end">
           {" "}
           <img
+            alt="subscription icon"
             src={nav_icons_urls.subscriotion_icon_url}
             className="w-5 h-5 mt-3 ml-2"
           />{" "}

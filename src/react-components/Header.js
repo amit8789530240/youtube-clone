@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { searchSuggestionsAPIEndPoint } from "../constants/yt-apis";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toogleNavBar } from "../redux-store/viewNavBarSlice";
 
 function Header() {
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [showSuggestionBox, setShowSuggestionBox] = useState(false);
+  const viewLeftNavigation = useSelector(
+    (store) => store.viewNavBarSlice.visible
+  );
+  const disatcher = useDispatch();
+  console.log(viewLeftNavigation);
 
   const getSearchSuggestions = async () => {
     if (searchText.trim() !== "") {
@@ -27,17 +33,16 @@ function Header() {
   return (
     <div id="header" className="flex items-center border-b-2 sticky">
       <img
+        onClick={() => disatcher(toogleNavBar())}
         src="/assets/navbar_icon.png"
         alt="Navbar Icon"
         className="size-10"
       />
-
       <img
         src="/assets/Youtube_icon.png"
         alt="Youtube_icon"
         className="w-32 h-8 m-1 "
       />
-
       <div className="flex items-center justify-center flex-grow">
         <div className="relative w-[60%]">
           {/* Input Box */}

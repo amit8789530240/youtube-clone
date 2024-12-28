@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { api_key, videoListAPIEndpoint } from "../constants/yt-apis";
 import VideoCard from "./VideoCard";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showNavBar } from "../redux-store/viewNavBarSlice";
 
 const Body = () => {
   const [videoListAPIResponse, setVideoListAPIResponse] = useState([]);
+  const dispatcher = useDispatch();
+  dispatcher(showNavBar());
   const callYoutubeAPI = async () => {
     try {
       const response = await fetch(videoListAPIEndpoint + api_key);

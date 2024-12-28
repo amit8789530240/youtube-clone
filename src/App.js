@@ -5,6 +5,8 @@ import MainContainer from "./react-components/MainContainer";
 import Body from "./react-components/Body";
 import WatchVideo from "./react-components/WatchVideo";
 import ErrorPage from "./react-components/ErrorPage";
+import { Provider } from "react-redux";
+import appStore from "./redux-store/store";
 
 const AppRouter = createBrowserRouter([
   {
@@ -26,8 +28,10 @@ const AppRouter = createBrowserRouter([
 function App() {
   return (
     <div className="App flex flex-col h-screen">
-      <Header />
-      <RouterProvider router={AppRouter} /> {/* <MainContainer /> */}
+      <Provider store={appStore}>
+        <Header />
+        <RouterProvider router={AppRouter} /> {/* <MainContainer /> */}
+      </Provider>
     </div>
   );
 }
