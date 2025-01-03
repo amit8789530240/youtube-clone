@@ -11,7 +11,6 @@ function Header() {
     (store) => store.viewNavBarSlice.visible
   );
   const disatcher = useDispatch();
-  console.log(viewLeftNavigation);
 
   const getSearchSuggestions = async () => {
     if (searchText.trim() !== "") {

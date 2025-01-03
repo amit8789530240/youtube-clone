@@ -14,7 +14,7 @@ const Body = () => {
       const response = await fetch(videoListAPIEndpoint + api_key);
       const json = await response.json();
 
-      setVideoListAPIResponse((prev) => [...Object.values(json?.items)]);
+      setVideoListAPIResponse((prev) => [...Object.values(json?.items || [])]);
     } catch (error) {
       console.error("Failed to fetch video details:", error);
     }
