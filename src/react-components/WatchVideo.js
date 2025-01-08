@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { hideNavBar } from "../redux-store/viewNavBarSlice";
@@ -10,7 +10,9 @@ const WatchVideo = () => {
   const [searchParams] = useSearchParams();
   const videoID = searchParams.get("v");
   const dispatcher = useDispatch();
-  dispatcher(hideNavBar());
+  useEffect(() => {
+    dispatcher(hideNavBar());
+  }, [dispatcher]);
   return (
     <div
       id="watchpage container"
@@ -28,7 +30,7 @@ const WatchVideo = () => {
         </div>
         <div
           id="live chat container"
-          className="bg-yellow-50 shadow-xl border-l-2 h-full w-[30%] my-4"
+          className="shadow-xl border-l-2 h-full w-[30%] my-4 rounded-2xl"
         >
           <LiveChat />
         </div>
@@ -38,13 +40,10 @@ const WatchVideo = () => {
         id="comments and related videos container container"
         className=" w-full flex"
       >
-        <div id="comments container" className="w-[69%] mx-4 bg-red-400 mb-2">
-          <Comments videoID={videoID} />
+        <div id="comments container" className="w-[69%] mx-4 mb-2 ">
+          <Comments />
         </div>
-        <div
-          id="realted videos container"
-          className="bg-green-300 mb-2 w-[30%]"
-        >
+        <div id="realted videos container" className="mb-2 w-[30%] rounded-2xl">
           <RelatedVideos />
         </div>
       </div>

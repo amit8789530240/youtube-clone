@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api_key } from "../constants/yt-apis";
+import { useSearchParams } from "react-router-dom";
 
 const EachComment = ({
   authorProfileImageUrl,
@@ -32,9 +33,12 @@ const EachComment = ({
   );
 };
 
-const Comments = ({ videoID }) => {
+const Comments = () => {
+  const [searchParams] = useSearchParams();
+  const videoID = searchParams.get("v");
   const [commentList, setCommentList] = useState([]);
   const fetchComments = async () => {
+    console.log("api call from comments component");
     try {
       const response = await fetch(
         "https://www.googleapis.com/youtube/v3/commentThreads?key=" +
@@ -53,14 +57,16 @@ const Comments = ({ videoID }) => {
   };
   useEffect(() => {
     fetchComments();
-  }, []);
+    console.log("Comment-useeffect");
+  }, [videoID]);
 
   return (
-    <div className="max-h-screen overflow-y-auto">
+    <div className="max-h-screen overflow-y-auto ">
       {commentList.map((comment) => {
         return (
           <>
             <EachComment
+              key={comment?.id}
               authorProfileImageUrl={
                 comment?.snippet?.topLevelComment?.snippet
                   ?.authorProfileImageUrl

@@ -14,12 +14,12 @@ const LiveChat = () => {
   useEffect(() => {
     interval.current = setInterval(() => {
       dispatcher(pushLiveComment(generateRandomComment()));
-      console.log("interval");
-    }, 500);
-
+      // console.log("interval");
+    }, 1500);
+    console.log("Live Chat-useeffect");
     return () => {
       clearInterval(interval.current);
-      console.log("interval cleared");
+      // console.log("interval cleared");
     };
   }, []);
 
@@ -117,7 +117,6 @@ const LiveChat = () => {
             setMyLiveCommentText("");
           }}
         />
-        <button onClick={() => clearInterval(interval.current)}>stop</button>
       </div>
     </div>
   );

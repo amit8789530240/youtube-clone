@@ -13,6 +13,7 @@ function Header() {
   const disatcher = useDispatch();
 
   const getSearchSuggestions = async () => {
+    console.log("api call form header component");
     if (searchText.trim() !== "") {
       const response = await fetch(searchSuggestionsAPIEndPoint + searchText);
       const data = await response.json();
@@ -24,6 +25,7 @@ function Header() {
 
   useEffect(() => {
     const timer = setTimeout(() => getSearchSuggestions(), 500);
+    console.log("Header-useeffect");
     return () => {
       clearTimeout(timer);
     };

@@ -10,6 +10,7 @@ const Body = () => {
   const dispatcher = useDispatch();
   dispatcher(showNavBar());
   const callYoutubeAPI = async () => {
+    console.log("Api call from body component");
     try {
       const response = await fetch(videoListAPIEndpoint + api_key);
       const json = await response.json();
@@ -21,6 +22,7 @@ const Body = () => {
   };
   useEffect(() => {
     callYoutubeAPI();
+    console.log("Body-useeffect");
   }, []);
 
   return (
