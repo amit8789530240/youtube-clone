@@ -1,5 +1,5 @@
 import React from "react";
-import "E:/React Project/youtube-clone/src/App.css"; // Add custom animations and gradients as needed
+import "../App.css"; // Add custom animations and gradients as needed
 
 const ErrorPage = () => {
   return (
